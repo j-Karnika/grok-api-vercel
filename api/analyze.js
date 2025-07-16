@@ -16,9 +16,22 @@ module.exports = async (req, res) => {
   }
 
   const prompt = `
-You will be given some text input.
-If the text is programming code, configuration files, markup language like XML, or hardware description/constraint files (like VHDL, Verilog, pin mappings), provide a brief description of its purpose and structure, and rewrite with inline comments. If the input is pure prose, return NO.
+You will be given a piece of text. Determine its type and act accordingly:
 
+If the text is source code (any programming, scripting, or hardware description language), provide:
+
+A brief explanation of what the code does.
+
+The same code rewritten with inline comments explaining key parts.
+
+If the text is configuration, markup, or metadata (like XML, JSON, YAML, or hardware configuration), provide:
+
+A brief description of its structure and purpose.
+
+The annotated configuration/markup with inline comments for important fields.
+
+If the text is neither of the above (e.g., plain text, general descriptions, etc.), simply respond with: NO, 
+Here is the input.
 """
 ${body}
 """
@@ -26,7 +39,8 @@ ${body}
 
   try {
     const response = await groq.chat.completions.create({
-      model: "llama3-70b-8192",
+      // model: "llama3-70b-8192",
+      model: "moonshotai/kimi-k2-instruct",
       messages: [{ role: "user", content: prompt }],
       temperature: 0.8
     });
