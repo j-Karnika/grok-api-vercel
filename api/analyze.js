@@ -17,12 +17,7 @@ module.exports = async (req, res) => {
 
   const prompt = `
 You will be given some text input.
-
-If it is source code, describe what it does and rewrite it with inline comments.
-
-If it is configuration or markup (like XML, JSON, YAML, HTML), describe its structure and purpose, then annotate it with comments.
-
-If it is plain text or documentation, respond with NO.
+If the text is programming code, configuration files, markup language like XML, or hardware description/constraint files (like VHDL, Verilog, pin mappings), provide a brief description of its purpose and structure, and rewrite with inline comments. If the input is pure prose, return NO.
 
 """
 ${body}
