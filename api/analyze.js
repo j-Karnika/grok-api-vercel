@@ -1,10 +1,10 @@
-import { Groq } from "groq-sdk";
+const { Groq } = require("groq-sdk");
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
 });
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
