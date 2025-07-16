@@ -16,15 +16,13 @@ module.exports = async (req, res) => {
   }
 
   const prompt = `
-You will be given a piece of text. If the text appears to be source code (in any programming language), do the following:
+You will be given some text input.
 
-1. Briefly describe what the code does in simple terms.
-2. Rewrite the same code with inline comments explaining each important line or block.
+If it is source code, describe what it does and rewrite it with inline comments.
 
-If the input is NOT code (e.g., plain text, HTML content, or natural language), respond only with:
-NO
+If it is configuration or markup (like XML, JSON, YAML, HTML), describe its structure and purpose, then annotate it with comments.
 
-Here is the input:
+If it is plain text or documentation, respond with NO.
 
 """
 ${body}
